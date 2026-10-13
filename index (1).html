@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Милана — нейро-видео и мультфильмы</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, 'Segoe UI', Roboto, sans-serif; background: #f1eafb; color: #2e1a4d; }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 0 16px 60px; }
+  .title { text-align: center; padding: 26px 6px 6px; }
+  .title .over { font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: #7c3aed; margin-bottom: 10px; }
+  .title h1 { font-size: 30px; line-height: 1.2; margin-bottom: 10px; color: #2e1a4d; }
+  .title h1 em { color: #7c3aed; font-style: normal; }
+  .title p { font-size: 15px; color: #6b5b8d; }
+  .master { display: flex; gap: 14px; align-items: center; background: #ffffff; border: 1px solid #c084fc; border-radius: 14px; padding: 14px 16px; margin: 18px 0 8px; box-shadow: 0 2px 16px rgba(124,58,237,.15); }
+  .master .ava { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg,#a855f7,#6d28d9); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: bold; flex-shrink: 0; box-shadow: 0 0 18px rgba(168,85,247,.5); }
+  .master p { font-size: 14px; line-height: 1.55; color: #4a3670; }
+  .master b { color: #2e1a4d; }
+  h2.sec { font-size: 22px; margin: 26px 0 14px; text-align: center; color: #2e1a4d; }
+  .card { background: #ffffff; border: 1px solid #c084fc; border-radius: 14px; padding: 18px; margin-bottom: 14px; box-shadow: 0 2px 14px rgba(124,58,237,.12); }
+  .card .top { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 8px; }
+  .card h3 { font-size: 19px; color: #2e1a4d; }
+  .card .price { font-weight: bold; color: #fff; background: #7c3aed; border-radius: 20px; padding: 4px 12px; white-space: nowrap; font-size: 14px; }
+  .card p { font-size: 14px; color: #5b4a7a; line-height: 1.6; margin-bottom: 12px; }
+  .card ul.inc { list-style: none; margin: 0 0 14px; font-size: 14px; color: #4a3670; line-height: 2; background: #f1eafb; border-radius: 10px; padding: 10px 14px; }
+  .card ul.inc li::before { content: '💜 '; font-size: 12px; }
+  .card button { width: 100%; padding: 14px; border: none; border-radius: 10px; background: linear-gradient(135deg,#a855f7,#6d28d9); color: #fff; font-size: 16px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 14px rgba(124,58,237,.4); }
+  .card button:active { transform: scale(.98); }
+  form.order { background: linear-gradient(180deg,#ffffff,#f1eafb); border: 1px solid #a855f7; border-radius: 14px; padding: 20px 18px; margin-top: 26px; box-shadow: 0 2px 20px rgba(124,58,237,.18); }
+  form.order h2 { color: #2e1a4d; margin: 0 0 6px; text-align: center; font-size: 22px; }
+  form.order label { font-size: 13px; color: #7c3aed; display: block; margin: 12px 0 6px; }
+  form.order input, form.order select, form.order textarea { width: 100%; border-radius: 10px; border: 1px solid #c084fc; background: #f7f3fd; color: #2e1a4d; padding: 12px; font-size: 15px; font-family: inherit; }
+  form.order textarea { min-height: 70px; resize: vertical; }
+  form.order .send { width: 100%; margin-top: 16px; padding: 15px; border: none; border-radius: 10px; background: linear-gradient(135deg,#c084fc,#7c3aed); color: #fff; font-size: 16px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 16px rgba(124,58,237,.45); }
+  #thanks { display: none; text-align: center; padding: 24px 10px; }
+  #thanks .big { font-size: 40px; margin-bottom: 10px; }
+  .ref { margin-top: 22px; background: #ffffff; border: 1px solid #c084fc; border-radius: 14px; padding: 20px 18px; text-align: center; box-shadow: 0 2px 14px rgba(124,58,237,.12); }
+  .ref .gift { font-size: 30px; margin-bottom: 8px; }
+  .ref h3 { font-size: 18px; margin-bottom: 8px; color: #2e1a4d; }
+  .ref p { font-size: 14px; color: #5b4a7a; line-height: 1.7; margin-bottom: 14px; }
+  .ref a { display: inline-block; background: transparent; color: #7c3aed; border: 1px solid #7c3aed; text-decoration: none; padding: 12px 24px; border-radius: 10px; font-size: 15px; font-weight: bold; }
+  footer { text-align: center; margin-top: 28px; font-size: 13px; color: #8a76ad; line-height: 1.7; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="title">
+    <div class="over">Милана · личный бренд</div>
+    <h1>Создаю мультфильмы <em>с нейросетью</em></h1>
+    <p>Пиксар · Дисней · Аниме — персональное видео по вашим фото</p>
+  </div>
+
+  <div class="master">
+    <div class="ava">М</div>
+    <p><b>Милана.</b> Видео нейросетями: Veo, Kling, Seedance, Runway, MidJourney. Группа «Кошка Соня» — 13,5 тыс. подписчиков. Работаю с чеком самозанятой 💜<br><a href="https://vkvideo.ru/video-154084804_456243577" target="_blank" style="color:#7c3aed;font-weight:bold">▶ Посмотреть работы</a></p>
+  </div>
+
+  <h2 class="sec">Услуги и цены</h2>
+
+  <div class="card">
+    <div class="top"><h3>🎬 Мультфильм по фото</h3><span class="price">от 1 900 ₽</span></div>
+    <p>Персональный мультфильм: вы, дети, питомцы — в стиле Пиксар, Дисней или аниме. Главный хит.</p>
+    <p style="font-size:13px">💜 Примеры работ — скину в личку после заявки.</p>
+    <button onclick="pick('Мультфильм по фото')">Хочу такой мульт!</button>
+  </div>
+
+  <div class="card">
+    <div class="top"><h3>📊 Инфографика</h3><span class="price">от 1 500 ₽</span></div>
+    <p>Карточки для маркетплейсов, характеристики простыми блоками, серии для соцсетей в одном стиле.</p>
+    <p style="font-size:13px">💜 Примеры работ — скину в личку после заявки.</p>
+    <button onclick="pick('Инфографика')">Обсудить задачу</button>
+  </div>
+
+  <div class="card">
+    <div class="top"><h3>🎬 Видеооткрытка</h3><span class="price">от 990 ₽</span></div>
+    <p>Поздравление или подарок: именное видео с музыкой и эффектами. Готовность — 1 день.</p>
+    <ul class="inc">
+      <li>Имя и фото виновника торжества</li>
+      <li>Музыка и эффекты на выбор</li>
+      <li>Готовность — 1 день</li>
+    </ul>
+    <button onclick="pick('Видеооткрытка')">Поздравить близких</button>
+  </div>
+
+  <div class="card">
+    <div class="top"><h3>🎙 Озвучка на русском</h3><span class="price">от 490 ₽</span></div>
+    <p>Живая русская озвучка для вашего видео: тёплая, с интонациями. Отдельно или к ролику.</p>
+    <ul class="inc">
+      <li>Живой тёплый голос, русский язык</li>
+      <li>До 1 минуты (длиннее — обсудим)</li>
+      <li>Одна правка бесплатно</li>
+    </ul>
+    <button onclick="pick('Озвучка на русском')">Озвучить моё видео</button>
+  </div>
+
+  <div class="card">
+    <div class="top"><h3>🎥 Фильм со смыслом</h3><span class="price">1 900 / 2 900 ₽</span></div>
+    <p>Всё вместе: сценарий, видео, озвучка, музыка. База — 1 900 ₽, премиум — 2 900 ₽.</p>
+    <ul class="inc">
+      <li>Сценарий под вашу задачу</li>
+      <li>Видео + озвучка + музыка</li>
+      <li>База 1 900 ₽ · Премиум 2 900 ₽</li>
+    </ul>
+    <a href="https://vkvideo.ru/video-154084804_456243577" target="_blank" style="display:block;text-align:center;margin-bottom:14px;color:#7c3aed;font-size:14px">▶ Смотреть пример: фильм со смыслом</a>
+    <button onclick="pick('Фильм со смыслом')">Хочу фильм</button>
+  </div>
+
+  <div class="card">
+    <div class="top"><h3>📱 Сторис-пакет</h3><span class="price">от 700 ₽</span></div>
+    <p>Оформление сторис на каждый день: шаблоны, анимация, ваш стиль.</p>
+    <ul class="inc">
+      <li>Шаблоны в вашем стиле</li>
+      <li>Анимация и подписи</li>
+      <li>Пакеты на день, неделю, месяц</li>
+    </ul>
+    <button onclick="pick('Сторис-пакет')">Оформить сторис</button>
+  </div>
+
+  <form class="order" id="orderForm" onsubmit="return sendOrder(event)">
+    <h2>Оформить заказ</h2>
+    <div id="formBody">
+      <label>Что заказываем?</label>
+      <select id="fService">
+        <option>Мультфильм по фото</option>
+        <option>Инфографика</option>
+        <option>Видеооткрытка</option>
+        <option>Озвучка на русском</option>
+        <option>Фильм со смыслом</option>
+        <option>Сторис-пакет</option>
+      </select>
+      <label>Ваше имя</label>
+      <input id="fName" placeholder="Как к вам обращаться">
+      <label>Идея (пара слов)</label>
+      <textarea id="fIdea" placeholder="Например: мульт-сюрприз дочке на день рождения"></textarea>
+      <button class="send" type="submit">Связаться со мной 💜</button>
+    </div>
+    <div id="thanks">
+      <div class="big">💜</div>
+      <h2>Спасибо, заявка принята!</h2>
+      <p style="color:#5b4a7a">Напишу вам в личные сообщения в течение дня.<br>Милана</p>
+    </div>
+  </form>
+
+  <div class="ref">
+    <div class="gift">✨</div>
+    <h3>Любишь творить?</h3>
+    <p>Все мои работы сделаны в Syntx.<br>Держи скидку 15% по моей ссылке — начни с преимуществом.</p>
+    <a href="https://syntx.ai/welcome/TkIqGVOu">Забрать скидку 15%</a>
+  </div>
+
+  <footer>Милана · нейро-видео и мультфильмы · 2026</footer>
+</div>
+<script>
+function pick(s){
+  document.getElementById('fService').value=s;
+  document.getElementById('orderForm').scrollIntoView({behavior:'smooth'});
+}
+function sendOrder(e){
+  e.preventDefault();
+  document.getElementById('formBody').style.display='none';
+  document.getElementById('thanks').style.display='block';
+  return false;
+}
+</script>
+</body>
+</html>
